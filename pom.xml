@@ -3,7 +3,7 @@
     <groupId>com.vikinghammer</groupId>
     <artifactId>vh-dao</artifactId>
     <packaging>jar</packaging>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
     <name>Vikinghammer JDO DAO</name>
     <url>http://vikinghammer.com</url>
 
