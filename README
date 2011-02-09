@@ -1,0 +1,27 @@
+The vh-dao library allows you to simplify your use of JDO; by centralizing the use of the PersistenceManager and handling its closing in a base class, it frees you to write DAO methods that apply only to the logic you want to accomplish with your query, rather than having to worry about playing JDO's game.
+
+To write a DAO for a Greeting model class, you'd create this interface:
+
+    public interface GreetingDao extends VHDao<Greeting> {
+
+And this DAO implementation:
+
+    public class JdoGreetingDao extends BaseVHDao<Greeting> implements GreetingDao {
+
+If you want to write a query that returns a single object:
+
+    public Greeting getLatestByAuthor(User author) {
+        VHQuery query = new VHQuery(Greeting.class);
+        query.setFilter("author == :author");
+        query.setOrdering("date desc");
+        return first(query, author);
+    }
+
+Or a list of objects:
+
+    public List<Greeting> mostRecent(int count) {
+        VHQuery query = new VHQuery(Greeting.class);
+        query.setOrdering("date desc");
+        query.setRange(0, count);
+        return list(query);
+    }
